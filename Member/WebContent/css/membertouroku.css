@@ -1,0 +1,29 @@
+@charset "UTF-8";
+
+.top{
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin: auto;
+  width: 100%;
+}
+
+.user{
+  text-align: center;
+}
+
+.bank{
+  text-align: center;
+  border-bottom: 1px solid black;
+  margin: auto;
+  width: 100%;
+}
+
+.button{
+  text-align: center;
+}
+
+.wrapper{
+  border: 1px solid black;
+  margin: auto;
+  width: 50%;
+}
