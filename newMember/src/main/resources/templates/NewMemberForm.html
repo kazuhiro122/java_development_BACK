@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <link th:href="@{/css/NewMemberForm.css}" rel="stylesheet">
+</head>
+<body>
+<div class="wrapper">
+  <div class="top">
+    <h3 th:text="${title}">会員登録ページ</h3>
+  </div>
+  <form method="post" action="#" th:action="@{/newMemberRegistration}" th:object="${memberForm}">
+  	<div class="user">
+    	<p><label>ユーザーID</label><input type="text"  name="username" th:value="*{username}" placeholder="" required></p>
+		<div th:if="${#fields.hasErrors('username')}" th:errors="*{username}"></div>
+    	<p><label>パスワード</label><input type="password" name="password" th:value="*{password}" id="pass" required></p>
+    	<div th:if="${#fields.hasErrors('password')}" th:errors="*{password}"></div>
+    	<p><label>パスワード(確認)</label><input type="password" name="password_again" th:value="*{password_again}" id="pass2" required></p>
+    	<div th:if="${#fields.hasErrors('password_again')}" th:errors="*{password_again}"></div>
+    	<p><label>氏名(姓)</label><input type="text" name="last_name" th:value="*{last_name}"></p>
+    	<div th:if="${#fields.hasErrors('last_name')}" th:errors="*{last_name}"></div>
+   	 	<p><label>氏名(名)</label><input type="text" name="first_name" th:value="*{first_name}"></p>
+   	 	<div th:if="${#fields.hasErrors('first_name')}" th:errors="*{first_name}"></div>
+   	 	<p><label>郵便番号</label><input type="text" name="zip_code" th:value="*{zip_code}"></p>
+   	 	<div th:if="${#fields.hasErrors('zip_code')}" th:errors="*{zip_code}"></div>
+   	 	<p><label>住所</label><input type="text" name="address" th:value="*{address}"></p>
+   	 	<div th:if="${#fields.hasErrors('address')}" th:errors="*{address}"></div>
+    	<p><label>電話番号</label><input type="text" name="phone_no" th:value="*{phone_no}"></p>
+    	<div th:if="${#fields.hasErrors('phone_no')}" th:errors="*{phone_no}"></div>
+  	</div>
+  	<div class="bank">口座情報
+    	<p><label>銀行名</label><input type="text" name="bank_name" th:value="*{bank_name}"></p>
+    	<div th:if="${#fields.hasErrors('bank_name')}" th:errors="*{bank_name}"></div>
+    	<p><label>支店名</label><input type="text" name="bank_branch_name" th:value="*{bank_branch_name}"></p>
+    	<div th:if="${#fields.hasErrors('bank_branch_name')}" th:errors="*{bank_branch_name}"></div>
+    	<p><label>口座名義(カナ)</label><input type="text" name="bank_account_holder" th:value="*{bank_account_holder}"></p>
+    	<div th:if="${#fields.hasErrors('bank_account_holder')}" th:errors="*{bank_account_holder}"></div>
+    	<p><label>口座番号</label><input type="text" name="bank_account_no" th:value="*{bank_account_no}"></p>
+    	<div th:if="${#fields.hasErrors('bank_account_no')}" th:errors="*{bank_account_no}"></div>
+  	</div>
+  	<div class="button">
+    	<input type="submit" value="確認ボタン">
+  	</div>
+  	</form>
+</div>
+</body>
+</html>
