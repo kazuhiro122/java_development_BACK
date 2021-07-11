@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+
+	<!-- 「/inquiry/save」にリクエストを送信する -->
+	<form method = "post" action = "#" th:action = "@{/inquiry/save}" th:object = "${inquiryForm}">
+
+		<!-- データ送信用に入力欄が必要なのですが、今回は確認ページなので表示したくないので、type = "hidden" を設定する -->
+		<input type = "hidden" name = "name" th:text = "*{name}">
+		<input type = "hidden" name = "email" th:text = "*{email}">
+		<input type = "hidden" name = "contents" th:text = "*{contents}">
+		<input type = "submit" value = "送信">
+
+	</form>
+
+</body>
+</html>
