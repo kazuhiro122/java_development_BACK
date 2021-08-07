@@ -1,5 +1,10 @@
 package com.example.demo.inquiry;
 
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
@@ -14,10 +19,61 @@ public class InquiryDaoImpl implements InquiryDao {
 		this.jdbcTemplate = jdbcTemplate;
 	}
 
+	//登録INSERT文
 	@Override
 	public void create(Inquiry inquiry) {
-		jdbcTemplate.update("INSERT INTO inquiry(name, email, contents) VALUES(?, ?, ?)",
-		inquiry.getName(), inquiry.getEmail(), inquiry.getContents());
+		jdbcTemplate.update("INSERT INTO inquiry(name, email, contents) VALUES(?, ?, ?, ?, ?, ?)",
+		inquiry.getSubject(), inquiry.getUserId(), inquiry.getEmail(), inquiry.getName(), inquiry.getTellNum(), inquiry.getContents());
+	}
+	//削除DELETE文
+	@Override
+	public void delete(int id) {
+		jdbcTemplate.update("DELETE FROM inquiry WHERE id = ?", id);
+	}
+	//更新UPDATE文
+	public void update(Inquiry inquiry) {
+		jdbcTemplate.update("UPDATE  inquiry SET subject = ?, userId = ?, email = ?, name = ?, tellNum = ?, contents = ? WHERE id = ?",
+		inquiry.getSubject(), inquiry.getUserId(), inquiry.getEmail(), inquiry.getName(), inquiry.getTellNum(), inquiry.getContents(), inquiry.getId());
+	}
+
+	//Id指定による取得
+	@Override
+	public Inquiry findById(int id) {
+
+		Map<String, Object> map = jdbcTemplate.queryForMap("SELECT * FROM inquiry WHERE id = ?", id);
+		Inquiry inquiry = new Inquiry();
+		inquiry.setId((int) map.get("id"));
+		inquiry.setSubject((String) map.get("subject"));
+		inquiry.setUserId((String) map.get("userId"));
+		inquiry.setEmail((String) map.get("email"));
+		inquiry.setName((String) map.get("name"));
+		inquiry.setTellNum((String) map.get("tellNum"));
+		inquiry.setContents((String) map.get("contents"));
+		inquiry.setCreated(((LocalDateTime) map.get("created")).toLocalDate());
+		return inquiry;
+	}
+
+	//全取得
+	@Override
+	public List<Inquiry> getAll() {
+
+		List<Inquiry> inquirys = new ArrayList<>();
+
+		for (Map<String, Object> row : jdbcTemplate.queryForList("SELECT * FROM inquiry ORDER BY id")) {
+			Inquiry inquiry = new Inquiry();
+			inquiry.setId((int) row.get("id"));
+			inquiry.setSubject((String) row.get("subject"));
+			inquiry.setUserId((String) row.get("userId"));
+			inquiry.setEmail((String) row.get("email"));
+			inquiry.setName((String) row.get("name"));
+			inquiry.setTellNum((String) row.get("tellNum"));
+			inquiry.setContents((String) row.get("contents"));
+			inquiry.setCreated(((LocalDateTime) row.get("created")).toLocalDate());
+			inquirys.add(inquiry);
+		}
+
+		return inquirys;
+
 	}
 
 }

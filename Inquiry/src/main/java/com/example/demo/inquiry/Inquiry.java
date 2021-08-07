@@ -1,21 +1,33 @@
 package com.example.demo.inquiry;
 
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 public class Inquiry {
 
 	private int id;
-	private String name;
+	private String subject;
+	private String userId;
 	private String email;
+	private String name;
+	private String tellNum;
 	private String contents;
-	private LocalDateTime created;
+	private LocalDate created;
 
 
-	public Inquiry(String name, String email, String contents) {
-		this.name = name;
-		this.email = email;
+	public Inquiry(String subject, String userId,  String email, String name, String tellNum, String contents) {
+		this.subject  = subject;
+		this.userId   = userId;
+		this.email    = email;
+		this.name     = name;
+		this.tellNum  = tellNum;
 		this.contents = contents;
 	}
+
+
+	public Inquiry() {
+		// TODO 自動生成されたコンストラクター・スタブ
+	}
+
 
 
 	public int getId() {
@@ -23,6 +35,22 @@ public class Inquiry {
 	}
 	public void setId(int id) {
 		this.id = id;
+	}
+
+
+	public String getSubject() {
+		return subject;
+	}
+	public void setSubject(String subject) {
+		this.subject = subject;
+	}
+
+
+	public String getUserId() {
+		return userId;
+	}
+	public void setUserId(String userId) {
+		this.userId = userId;
 	}
 
 
@@ -42,6 +70,14 @@ public class Inquiry {
 	}
 
 
+	public String getTellNum() {
+		return tellNum;
+	}
+	public void setTellNum(String tellNum) {
+		this.tellNum = tellNum;
+	}
+
+
 	public String getContents() {
 		return contents;
 	}
@@ -50,10 +86,10 @@ public class Inquiry {
 	}
 
 
-	public LocalDateTime getCreated() {
+	public LocalDate getCreated() {
 		return created;
 	}
-	public void setCreated(LocalDateTime created) {
+	public void setCreated(LocalDate created) {
 		this.created = created;
 	}
 
